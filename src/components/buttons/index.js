@@ -1,7 +1,8 @@
 import React from "react";
 import { classNames } from "../../utils/functions";
+import Loader from "../loader";
 
-const Button = ({ label, handleClick, ...props }) => {
+const Button = ({ label, handleClick, loading, icon: ICON, iconClassName, loaderClass, loaderType, ...props }) => {
     return (
         <button
             {...props}
@@ -11,6 +12,8 @@ const Button = ({ label, handleClick, ...props }) => {
             )}
         >
             {label}
+            {ICON ? <ICON className={classNames('fill-white ml-1 w-4 h-4', iconClassName)} /> : null}
+            {loading ? <Loader className={classNames('ml-1', loaderClass)} type={loaderType || 'spinner'} /> : null}
         </button>
     );
 };

@@ -118,6 +118,18 @@ module.exports = {
           500: "#667085",
         },
       },
+      animation: {
+        'bounce-slow': 'up_down 1500ms linear infinite',
+      },
+      keyframes: {
+        up_down: {
+          '0%': { transform: 'translateY(0%)' },
+          '25%': { transform: 'translateY(1%)' },
+          '50%': { transform: 'translateY(2%)' },
+          '75%': { transform: 'translateY(1%)' },
+          '100%': { transform: 'translateY(0%)' },
+        }
+      }
     },
   },
   plugins: [],
