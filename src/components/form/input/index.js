@@ -7,6 +7,7 @@ const CustomInput = ({
   passwordVisibility,
   name,
   value,
+  error,
   type,
   handleChange,
   ...props
@@ -24,7 +25,7 @@ const CustomInput = ({
         {...props}
         className={classNames(
           "w-full bg-white rounded-[0.5rem] border border-gray-300 focus:border-green-600 focus:ring-2 focus:ring-green-50 text-base outline-none text-gray-700 py-3 px-4 transition-colors duration-200 ease-in-out",
-          inputClass,
+          inputClass, error ? 'border-red-500 focus:border-red-500' : '', passwordVisibility ? 'pr-[42px]' : ''
         )}
         {...{ name, value, type: (passwordVisibility ? isOpen ? 'text' : 'password' : type), onChange: handleChange }}
       />

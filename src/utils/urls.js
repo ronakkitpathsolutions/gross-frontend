@@ -10,8 +10,18 @@ export const PAGES = {
       path: "/",
       name: "Root Login",
     },
+    FORGOT_PASSWORD: {
+      id: "forgot_password",
+      path: "/forgot-password",
+      name: "Forgot Password"
+    }
   },
   DASHBOARD: {
+    BOARD: {
+      id: "board",
+      path: "/dashboard",
+      name: "board",
+    },
     ORDERS: {
       id: "orders",
       path: "/orders",

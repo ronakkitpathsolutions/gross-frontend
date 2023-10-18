@@ -1,16 +1,33 @@
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Images } from "../../../assets";
 import CustomInput from "../../../components/form/input";
 import InputGroup from "../../../components/form/input-group";
 import Form from "../../../components/form";
-import { Link } from "react-router-dom";
 import Button from "../../../components/buttons";
+import { useFormik } from "formik";
+import { validation } from "../../../utils/yup";
 
 const Login = ({ ...props }) => {
+    const { errors, handleChange, handleSubmit, values } =
+        useFormik({
+            initialValues: {
+                email: "",
+                password: "",
+            },
+            validationSchema: validation.login,
+            onSubmit: async (values) => {
+                await handleApi(values);
+            },
+        });
 
-    const handleSubmit = useCallback((e) => {
-        e.preventDefault()
-    }, [])
+    const handleApi = useCallback(async (payload) => {
+        try {
+
+        } catch (error) {
+
+        }
+    }, []);
 
     return (
         <section {...props} className="w-full h-screen">
@@ -20,15 +37,36 @@ const Login = ({ ...props }) => {
                 </div>
                 <div className="w-full md:w-1/2 lg:w-[40%] h-full flex justify-center items-center">
                     <Form handleSubmit={handleSubmit} className="p-4 w-full xs:w-[400px]">
-                        <div className="w-full mb-16" >
-                            <h4 className="text-center text-3xl md:text-4xl font-medium" >Welcome Back</h4>
-                            <p className="text-sm text-gray-600 text-center mt-1">Sign in to your account</p>
+                        <div className="w-full mb-16">
+                            <h4 className="text-center text-3xl md:text-4xl font-medium">
+                                Welcome Back
+                            </h4>
+                            <p className="text-sm text-gray-600 text-center mt-1">
+                                Sign in to your account
+                            </p>
                         </div>
-                        <InputGroup label="Email address">
-                            <CustomInput autoComplete="on" inputClass="font-medium" type="email" />
+                        <InputGroup error={errors.email} label="Email address">
+                            <CustomInput
+                                name="email"
+                                error={errors.email}
+                                value={values.email}
+                                handleChange={handleChange}
+                                autoComplete="on"
+                                inputClass="font-medium"
+                                type="email"
+                            />
                         </InputGroup>
-                        <InputGroup label="Password">
-                            <CustomInput autoComplete="on" inputClass="font-medium" type="password" passwordVisibility />
+                        <InputGroup error={errors.password} label="Password">
+                            <CustomInput
+                                name="password"
+                                error={errors.password}
+                                value={values.password}
+                                handleChange={handleChange}
+                                autoComplete="on"
+                                inputClass="font-medium"
+                                type="password"
+                                passwordVisibility
+                            />
                         </InputGroup>
                         <div className="flex flex-col justify-end items-end !mt-8">
                             <span className="mb-2 text-sm cursor-pointer font-medium">
@@ -36,7 +74,7 @@ const Login = ({ ...props }) => {
                                     Forgot password?
                                 </Link>
                             </span>
-                            <Button type='submit' label="Login" />
+                            <Button type="submit" label="Login" />
                         </div>
                     </Form>
                 </div>
